@@ -29,6 +29,7 @@ def get_weekday(hourtime):
 
 day_func = udf(lambda x: get_weekday(x), IntegerType())
 df = df.withColumn('get_weekday', day_func(df['unplug_hourTime']))
+df.show()
 
 def get_year(hourtime):
     """
@@ -46,11 +47,11 @@ def get_year(hourtime):
         day = int(hourtime[18:20])
         return date(year, month, day).year()
     
-year_func = udf(lambda x: get_year(x), IntegerType())    
+year_func = udf(lambda x: get_year(x), IntegerType())  
 df = df.withColumn('get_year', year_func(df['unplug_hourTime']))
 
 df2018 = df.filter(df["get_year"] == 2018)
-df2018.show
+df2018.show()
 df2020 = df.filter(df["get_year"] == 2020)
-df2020.show
+df2020.show()
 
