@@ -39,7 +39,7 @@ def main(sc, num):
         rddlst.append(sc.textFile(f'hdfs:///user/crisavil/{f}'))
 
     rdd = sc.union(rddlst)
-    with open(f"totalDatos.json", 'w') as fout:
+    with open("totalDatos.json", 'w') as fout:
         for data in rdd:
             fout.write(f'{data}\n')
 
